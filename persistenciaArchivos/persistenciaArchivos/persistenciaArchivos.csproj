@@ -54,6 +54,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UNA\Cheques\Cheque.cs" />
+    <Compile Include="UNA\Cheques\ArchivoManager.cs" />
     <EmbeddedResource Include="CreateFilesForm.resx">
       <DependentUpon>CreateFilesForm.cs</DependentUpon>
     </EmbeddedResource>

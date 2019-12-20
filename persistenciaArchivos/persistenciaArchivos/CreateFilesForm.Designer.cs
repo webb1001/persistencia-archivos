@@ -30,6 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.ChequesDataGridView = new System.Windows.Forms.DataGridView();
+            this.NombreColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumeroChequeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MontoColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescripcionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CerrarButton = new System.Windows.Forms.Button();
             this.CrearArchivoButton = new System.Windows.Forms.Button();
             this.GeneralErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
@@ -46,10 +50,6 @@
             this.LimpiarButton = new System.Windows.Forms.Button();
             this.ListaChequesLabel = new System.Windows.Forms.Label();
             this.InformacionRutaLabel = new System.Windows.Forms.Label();
-            this.NombreColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumeroChequeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MontoColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescripcionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ChequesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GeneralErrorProvider)).BeginInit();
             this.UpsertPanel.SuspendLayout();
@@ -70,6 +70,30 @@
             this.ChequesDataGridView.ReadOnly = true;
             this.ChequesDataGridView.Size = new System.Drawing.Size(471, 185);
             this.ChequesDataGridView.TabIndex = 2;
+            // 
+            // NombreColumn
+            // 
+            this.NombreColumn.HeaderText = "Nombre";
+            this.NombreColumn.Name = "NombreColumn";
+            this.NombreColumn.ReadOnly = true;
+            // 
+            // NumeroChequeColumn
+            // 
+            this.NumeroChequeColumn.HeaderText = "Número Cheque";
+            this.NumeroChequeColumn.Name = "NumeroChequeColumn";
+            this.NumeroChequeColumn.ReadOnly = true;
+            // 
+            // MontoColumn
+            // 
+            this.MontoColumn.HeaderText = "Monto en Colones";
+            this.MontoColumn.Name = "MontoColumn";
+            this.MontoColumn.ReadOnly = true;
+            // 
+            // DescripcionColumn
+            // 
+            this.DescripcionColumn.HeaderText = "Descripción";
+            this.DescripcionColumn.Name = "DescripcionColumn";
+            this.DescripcionColumn.ReadOnly = true;
             // 
             // CerrarButton
             // 
@@ -191,6 +215,7 @@
             this.AgregarButton.TabIndex = 12;
             this.AgregarButton.Text = "Agregar";
             this.AgregarButton.UseVisualStyleBackColor = true;
+            this.AgregarButton.Click += new System.EventHandler(this.AgregarButton_Click);
             // 
             // LimpiarButton
             // 
@@ -200,6 +225,7 @@
             this.LimpiarButton.TabIndex = 11;
             this.LimpiarButton.Text = "Limpiar";
             this.LimpiarButton.UseVisualStyleBackColor = true;
+            this.LimpiarButton.Click += new System.EventHandler(this.LimpiarButton_Click);
             // 
             // ListaChequesLabel
             // 
@@ -222,30 +248,6 @@
             this.InformacionRutaLabel.Size = new System.Drawing.Size(137, 13);
             this.InformacionRutaLabel.TabIndex = 16;
             this.InformacionRutaLabel.Text = "@InformacionRutaArchivos";
-            // 
-            // NombreColumn
-            // 
-            this.NombreColumn.HeaderText = "Nombre";
-            this.NombreColumn.Name = "NombreColumn";
-            this.NombreColumn.ReadOnly = true;
-            // 
-            // NumeroChequeColumn
-            // 
-            this.NumeroChequeColumn.HeaderText = "Número Cheque";
-            this.NumeroChequeColumn.Name = "NumeroChequeColumn";
-            this.NumeroChequeColumn.ReadOnly = true;
-            // 
-            // MontoColumn
-            // 
-            this.MontoColumn.HeaderText = "Monto en Colones";
-            this.MontoColumn.Name = "MontoColumn";
-            this.MontoColumn.ReadOnly = true;
-            // 
-            // DescripcionColumn
-            // 
-            this.DescripcionColumn.HeaderText = "Descripción";
-            this.DescripcionColumn.Name = "DescripcionColumn";
-            this.DescripcionColumn.ReadOnly = true;
             // 
             // CreateFilesForm
             // 
