@@ -15,6 +15,7 @@ namespace persistenciaArchivos
     public partial class CreateFilesForm : Form
     {
         private readonly string rutaPorDefecto = AppDomain.CurrentDomain.BaseDirectory;
+        private readonly string userPassword="El20Examen20Estaba20Faci20";
 
         public CreateFilesForm()
         {
@@ -168,14 +169,16 @@ namespace persistenciaArchivos
         
         private void CargarInformacion(ArchivoManager archivoManager)
         {
-            for (int rowIndex = 0; rowIndex < ChequesDataGridView.Rows.Count - 1; rowIndex++)
+            for (int rowIndex = 0; rowIndex < ChequesDataGridView.Rows.Count ; rowIndex++)
             {
+                string descripcionEncriptada = Encriptacion.EncriptarString(ChequesDataGridView.Rows[rowIndex].Cells[3].Value.ToString(),userPassword);
+                 
                 archivoManager.ChequesList.Add(new Cheque
                 {
                     Nombre = ChequesDataGridView.Rows[rowIndex].Cells[0].Value.ToString(),
                     Numero = ChequesDataGridView.Rows[rowIndex].Cells[1].Value.ToString(),
                     Monto = Convert.ToDouble(ChequesDataGridView.Rows[rowIndex].Cells[2].Value.ToString()),
-                    Descripcion = ChequesDataGridView.Rows[rowIndex].Cells[3].Value.ToString(),
+                    Descripcion = descripcionEncriptada,
                 });
             }
         }
