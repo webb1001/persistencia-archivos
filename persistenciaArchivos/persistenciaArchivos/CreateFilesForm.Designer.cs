@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateFilesForm));
             this.ChequesDataGridView = new System.Windows.Forms.DataGridView();
             this.NombreColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumeroChequeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,7 +37,7 @@
             this.DescripcionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CerrarButton = new System.Windows.Forms.Button();
             this.CrearArchivoButton = new System.Windows.Forms.Button();
-            this.GeneralErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.UpsertPanel = new System.Windows.Forms.Panel();
             this.MontoLabel = new System.Windows.Forms.Label();
             this.MontoTextBox = new System.Windows.Forms.TextBox();
@@ -50,9 +51,12 @@
             this.LimpiarButton = new System.Windows.Forms.Button();
             this.ListaChequesLabel = new System.Windows.Forms.Label();
             this.InformacionRutaLabel = new System.Windows.Forms.Label();
+            this.BorrarRenglonButton = new System.Windows.Forms.Button();
+            this.InformationProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ChequesDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GeneralErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.UpsertPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.InformationProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // ChequesDataGridView
@@ -65,10 +69,10 @@
             this.NumeroChequeColumn,
             this.MontoColumn,
             this.DescripcionColumn});
-            this.ChequesDataGridView.Location = new System.Drawing.Point(279, 67);
+            this.ChequesDataGridView.Location = new System.Drawing.Point(279, 81);
             this.ChequesDataGridView.Name = "ChequesDataGridView";
             this.ChequesDataGridView.ReadOnly = true;
-            this.ChequesDataGridView.Size = new System.Drawing.Size(471, 185);
+            this.ChequesDataGridView.Size = new System.Drawing.Size(471, 171);
             this.ChequesDataGridView.TabIndex = 2;
             // 
             // NombreColumn
@@ -103,6 +107,7 @@
             this.CerrarButton.TabIndex = 11;
             this.CerrarButton.Text = "Cerrar";
             this.CerrarButton.UseVisualStyleBackColor = true;
+            this.CerrarButton.Click += new System.EventHandler(this.CerrarButton_Click);
             // 
             // CrearArchivoButton
             // 
@@ -112,10 +117,12 @@
             this.CrearArchivoButton.TabIndex = 11;
             this.CrearArchivoButton.Text = "Crear Archivo";
             this.CrearArchivoButton.UseVisualStyleBackColor = true;
+            this.CrearArchivoButton.Click += new System.EventHandler(this.CrearArchivoButton_Click);
             // 
-            // GeneralErrorProvider
+            // ErrorProvider
             // 
-            this.GeneralErrorProvider.ContainerControl = this;
+            this.ErrorProvider.ContainerControl = this;
+            this.ErrorProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("ErrorProvider.Icon")));
             // 
             // UpsertPanel
             // 
@@ -141,17 +148,16 @@
             this.MontoLabel.ForeColor = System.Drawing.Color.White;
             this.MontoLabel.Location = new System.Drawing.Point(18, 90);
             this.MontoLabel.Name = "MontoLabel";
-            this.MontoLabel.Size = new System.Drawing.Size(37, 13);
+            this.MontoLabel.Size = new System.Drawing.Size(110, 13);
             this.MontoLabel.TabIndex = 20;
-            this.MontoLabel.Text = "Monto";
-            this.MontoLabel.Click += new System.EventHandler(this.MontoLabel_Click);
+            this.MontoLabel.Text = "Monto (Solo números)"; 
             // 
             // MontoTextBox
             // 
             this.MontoTextBox.Location = new System.Drawing.Point(21, 106);
             this.MontoTextBox.Name = "MontoTextBox";
             this.MontoTextBox.Size = new System.Drawing.Size(205, 20);
-            this.MontoTextBox.TabIndex = 19;
+            this.MontoTextBox.TabIndex = 15;
             // 
             // DescripcionLlabel
             // 
@@ -159,9 +165,9 @@
             this.DescripcionLlabel.ForeColor = System.Drawing.Color.White;
             this.DescripcionLlabel.Location = new System.Drawing.Point(20, 139);
             this.DescripcionLlabel.Name = "DescripcionLlabel";
-            this.DescripcionLlabel.Size = new System.Drawing.Size(122, 13);
+            this.DescripcionLlabel.Size = new System.Drawing.Size(212, 13);
             this.DescripcionLlabel.TabIndex = 18;
-            this.DescripcionLlabel.Text = "Descripción( encriptada)";
+            this.DescripcionLlabel.Text = "Descripción( min 10 caractéres, encriptada)";
             // 
             // DescripcionTextBox
             // 
@@ -169,7 +175,7 @@
             this.DescripcionTextBox.Multiline = true;
             this.DescripcionTextBox.Name = "DescripcionTextBox";
             this.DescripcionTextBox.Size = new System.Drawing.Size(205, 97);
-            this.DescripcionTextBox.TabIndex = 17;
+            this.DescripcionTextBox.TabIndex = 16;
             // 
             // NumeroChequeLabel
             // 
@@ -177,10 +183,9 @@
             this.NumeroChequeLabel.ForeColor = System.Drawing.Color.White;
             this.NumeroChequeLabel.Location = new System.Drawing.Point(18, 51);
             this.NumeroChequeLabel.Name = "NumeroChequeLabel";
-            this.NumeroChequeLabel.Size = new System.Drawing.Size(98, 13);
+            this.NumeroChequeLabel.Size = new System.Drawing.Size(185, 13);
             this.NumeroChequeLabel.TabIndex = 16;
-            this.NumeroChequeLabel.Text = "Número de cheque";
-            this.NumeroChequeLabel.Click += new System.EventHandler(this.NumeroChequeLabel_Click);
+            this.NumeroChequeLabel.Text = "Número de cheque (min 5 caractéres)"; 
             // 
             // NombreLabel
             // 
@@ -188,10 +193,9 @@
             this.NombreLabel.ForeColor = System.Drawing.Color.White;
             this.NombreLabel.Location = new System.Drawing.Point(18, 12);
             this.NombreLabel.Name = "NombreLabel";
-            this.NombreLabel.Size = new System.Drawing.Size(44, 13);
+            this.NombreLabel.Size = new System.Drawing.Size(131, 13);
             this.NombreLabel.TabIndex = 15;
-            this.NombreLabel.Text = "Nombre";
-            this.NombreLabel.Click += new System.EventHandler(this.NombreLabel_Click);
+            this.NombreLabel.Text = "Nombre (min 3 caractéres)"; 
             // 
             // NumeroChequeTextBox
             // 
@@ -205,7 +209,7 @@
             this.NombreTextBox.Location = new System.Drawing.Point(21, 28);
             this.NombreTextBox.Name = "NombreTextBox";
             this.NombreTextBox.Size = new System.Drawing.Size(205, 20);
-            this.NombreTextBox.TabIndex = 13;
+            this.NombreTextBox.TabIndex = 13; 
             // 
             // AgregarButton
             // 
@@ -237,17 +241,30 @@
             this.ListaChequesLabel.Name = "ListaChequesLabel";
             this.ListaChequesLabel.Size = new System.Drawing.Size(169, 24);
             this.ListaChequesLabel.TabIndex = 15;
-            this.ListaChequesLabel.Text = "Lista de cheques";
-            this.ListaChequesLabel.Click += new System.EventHandler(this.NombreLabel_Click);
+            this.ListaChequesLabel.Text = "Lista de cheques"; 
             // 
             // InformacionRutaLabel
             // 
-            this.InformacionRutaLabel.AutoSize = true;
-            this.InformacionRutaLabel.Location = new System.Drawing.Point(276, 37);
+            this.InformacionRutaLabel.Location = new System.Drawing.Point(279, 37);
             this.InformacionRutaLabel.Name = "InformacionRutaLabel";
-            this.InformacionRutaLabel.Size = new System.Drawing.Size(137, 13);
+            this.InformacionRutaLabel.Size = new System.Drawing.Size(471, 41);
             this.InformacionRutaLabel.TabIndex = 16;
             this.InformacionRutaLabel.Text = "@InformacionRutaArchivos";
+            // 
+            // BorrarRenglonButton
+            // 
+            this.BorrarRenglonButton.Location = new System.Drawing.Point(360, 258);
+            this.BorrarRenglonButton.Name = "BorrarRenglonButton";
+            this.BorrarRenglonButton.Size = new System.Drawing.Size(95, 23);
+            this.BorrarRenglonButton.TabIndex = 11;
+            this.BorrarRenglonButton.Text = "Borrar renglón";
+            this.BorrarRenglonButton.UseVisualStyleBackColor = true;
+            this.BorrarRenglonButton.Click += new System.EventHandler(this.BorrarRenglonButton_Click);
+            // 
+            // InformationProvider
+            // 
+            this.InformationProvider.ContainerControl = this;
+            this.InformationProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("InformationProvider.Icon")));
             // 
             // CreateFilesForm
             // 
@@ -256,6 +273,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(777, 293);
             this.Controls.Add(this.InformacionRutaLabel);
+            this.Controls.Add(this.BorrarRenglonButton);
             this.Controls.Add(this.CerrarButton);
             this.Controls.Add(this.UpsertPanel);
             this.Controls.Add(this.CrearArchivoButton);
@@ -263,11 +281,13 @@
             this.Controls.Add(this.ListaChequesLabel);
             this.Name = "CreateFilesForm";
             this.Text = "Información de archivos";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateFilesForm_FormClosing);
             this.Load += new System.EventHandler(this.CreateFilesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ChequesDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GeneralErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             this.UpsertPanel.ResumeLayout(false);
             this.UpsertPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.InformationProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,7 +298,7 @@
         private System.Windows.Forms.DataGridView ChequesDataGridView;
         private System.Windows.Forms.Button CerrarButton;
         private System.Windows.Forms.Button CrearArchivoButton;
-        private System.Windows.Forms.ErrorProvider GeneralErrorProvider;
+        private System.Windows.Forms.ErrorProvider ErrorProvider;
         private System.Windows.Forms.Panel UpsertPanel;
         private System.Windows.Forms.Label MontoLabel;
         private System.Windows.Forms.TextBox MontoTextBox;
@@ -296,6 +316,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NumeroChequeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn MontoColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionColumn;
+        private System.Windows.Forms.Button BorrarRenglonButton;
+        private System.Windows.Forms.ErrorProvider InformationProvider;
     }
 }
 

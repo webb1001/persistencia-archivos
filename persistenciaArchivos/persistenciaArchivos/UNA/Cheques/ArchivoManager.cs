@@ -10,10 +10,16 @@ namespace persistenciaArchivos.UNA.Cheques
 {
     class ArchivoManager
     {
-        private readonly List<Cheque> ChequesList = new List<Cheque>();
+         
+        public List<Cheque> ChequesList { get; set; }
+        public ArchivoManager()
+        {
+            ChequesList = new List<Cheque>();
+        }
         public string CrearArchivo(string rutaBase) { 
-            string path = $"{rutaBase}/{DateTime.Now.ToString()}.csv";
-
+            string path = $"{DateTime.Now.ToString()}.csv";
+            path= path.Replace("/", "_");
+            path= path.Replace(":", "_");
             using (StreamWriter streamWriter = new StreamWriter(path))
             {
                 foreach (Cheque cheque in ChequesList) 
@@ -24,7 +30,6 @@ namespace persistenciaArchivos.UNA.Cheques
                     streamWriter.Flush();
                 return path;
             }
-
         }
         public void LeerArchivo() {
         }
